@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- link css -->
+    <link rel="stylesheet" href="../static/css/hoa_don.css" th:href="@{/css/hoa_don.css}">
+
+</head>
+
+
+<body>
+    <div class="container khung">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header  text-center">
+                        <h4>HÓA ĐƠN BÁN HÀNG</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span>Tên khách hàng: </span> <span class="mr-4"></span>
+                            <span class="ml-4">Điện thoại: </span> <span></span>
+                        </h5>
+                        <h5 class="card-title">Địa chỉ: <span></span></h5>
+                        <table border="1" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên sách</th>
+                                    <th>Giá tiền</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="item : ${BanSachChiTiet}">
+                                    <th class="text-center" th:text="${item.id}">1</th>
+                                    <td th:text="${item.sach.tenSach}">Jaiswal</td>
+                                    <td th:text="${item.sach.giaBia}">60</td>
+                                    <td th:text="${item.soLuong}">4</td>
+                                    <td th:text="${item.thanhTien}">60</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="4">Tổng cộng:</th>
+                                    <th class="text-left" th:text="${HoaDon.thanhTien}">100</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <p class="card-text">Hóa đơn đã xuất thì không thể chỉnh sửa.</p>
+                    </div>
+                    <div class="card-footer text-muted d-flex justify-content-between">
+                        <a href="#" class="btn btn-primary" th:href="@{'/ban-sach'}">Hủy</a>
+                        <a href="#" class="btn btn-primary" th:href="@{'/ban-sach/thanh-toan/' + ${HoaDon.id}}">Xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

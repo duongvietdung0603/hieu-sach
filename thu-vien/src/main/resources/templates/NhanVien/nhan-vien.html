@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <!-- icon awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+            crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css">
+
+
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="container-fluid  d-flex justify-content-between khung">
+            <div class="title">
+                <h3>Quản lý nhà sách</h3>
+            </div>
+            <div class="dropdown user">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item"  th:href=@{'/logout'} >Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+<div class="menu">
+    abc
+</div> -->
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <!-- thanh menu  -->
+            <nav class="sidenav-dark" th:include="Layout/menu::menu"></nav>
+            <!-- end thanh menu  -->
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home mr-1"></i>
+                                        Dashboard</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">Nhập sách</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                        <div class="col-12 hide_active" id="active_them">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar mr-1"></i>
+                                    Thêm mới
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label>Họ và tên</label>
+                                            <input type="text" class="form-control" id="t1_add">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Ngày sinh</label>
+                                            <input type="date" class="form-control" id="t2_add">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label>Giới tính</label>
+                                            <input type="text" class="form-control" id="t3_add">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Địa chỉ</label>
+                                            <input type="text" class="form-control" id="t4_add">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Chức vụ</label>
+                                            <input type="text" class="form-control" id="t5_add">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Hệ số lương</label>
+                                            <input type="text" class="form-control" id="t6_add">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Số ĐT</label>
+                                            <input type="text" class="form-control" id="t7_add">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" id="t8_add">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary mb-2" id="button_them_moi">Thêm
+                                        mới</button>
+                                    <button type="button" class="btn btn-primary mb-2 button_huy">Hủy</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 hide_active" id="active_sua">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar mr-1"></i>
+                                    Sửa sách
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-2">
+                                            <label>Id</label>
+                                            <input type="text" class="form-control" id="t1_edit" readonly>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Họ và tên</label>
+                                            <input type="text" class="form-control" id="t2_edit">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Ngày sinh</label>
+                                            <input type="date" class="form-control" id="t3_edit">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label>Giới tính</label>
+                                            <input type="text" class="form-control" id="t4_edit">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Địa chỉ</label>
+                                            <input type="text" class="form-control" id="t5_edit">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Chức vụ</label>
+                                            <input type="text" class="form-control" id="t6_edit">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Hệ số lương</label>
+                                            <input type="text" class="form-control" id="t7_edit">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Số ĐT</label>
+                                            <input type="text" class="form-control" id="t8_edit">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" id="t9_edit">
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-primary mb-2" id="button_sua">Lưu</button>
+                                    <button type="button" class="btn btn-primary mb-2 button_huy">Hủy</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar mr-1"></i>
+                                    Danh sách
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mt-2 mb-2">
+                                        <div class="col-6">
+                                            <button type="submit" class="btn btn-primary" id="click_them">Thêm
+                                                mới</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <form th:action="@{/auth/nhan-vien}"
+                                                class="form-inline justify-content-end">
+                                                <div class="form-group mx-sm-3 mb-2">
+                                                    <input th:value="${search}" type="text" class="form-control"
+                                                        placeholder="Search" name="search">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary mb-2">Search</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Id</th>
+                                                <th scope="col">Họ tên</th>
+                                                <th scope="col">Ngày sinh</th>
+                                                <th scope="col">Giới tính</th>
+                                                <th scope="col">Địa chỉ</th>
+                                                <th scope="col">Chức vụ</th>
+                                                <th scope="col">Hệ số lương</th>
+                                                <th scope="col">Số ĐT</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Active</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="Item : ${DanhSach}">
+                                                <th class="t1" th:text="${Item.id}">1</th>
+                                                <td class="t2" th:text="${Item.hoTen}">2</td>
+                                                <td class="t3" th:text="${Item.ngaySinh}">3</td>
+                                                <td class="t4" th:text="${Item.gioiTinh}">4</td>
+                                                <td class="t5" th:text="${Item.diaChi}">2020-12-5</td>
+                                                <td class="t6" th:text="${Item.chucVu}">6</td>
+                                                <td class="t7" th:text="${Item.heSoLuong}">7absbdaghsdas</td>
+                                                <td class="t8" th:text="${Item.sdt}">7absbdaghsdas</td>
+                                                <td class="t9" th:text="${Item.email}">7absbdaghsdas</td>
+                                                <td>
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <button type="button" class="btn btn-success click_sua">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <a th:href="@{'/auth/nhan-vien/xoa/'+ ${Item.id}}"
+                                                            class="btn btn-danger">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+
+    <!-- Jquery -->
+     <script th:inline="javascript" th:src="@{/js/NhanVien/nhan_vien.js}"
+        src="../../static/js/NhanVien/nhan_vien.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <!-- icon awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+        crossorigin="anonymous"></script>
+
+    <!-- style css  -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="container-fluid  d-flex justify-content-between khung">
+            <div class="title">
+                <h3>Quản lý nhà sách</h3>
+            </div>
+            <div class="dropdown user">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" th:href=@{'/logout'}>Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <div class="menu">
+        abc
+    </div> -->
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <!-- thanh menu  -->
+            <nav class="sidenav-dark" th:include="Layout/menu::menu"></nav>
+            <!-- end thanh menu  -->
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <h1 class="mt-4 main_title">Dashboard</h1>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6 thong_ke">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body">Sách: <span th:text="${Sach}">100</span> quyển</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" th:href=@{'/sach'}>View Details</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 thong_ke">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body">Khách hàng: <span th:text="${KhachHang}">100</span></div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" th:href=@{'/khach-hang'}>View Details</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 thong_ke">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-body">Nhân viên: <span th:text="${NhanVien}">100</span></div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" th:href=@{'/nhan-vien'}>View Details</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 thong_ke">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body">Nhà cung cấp: <span th:text="${NhaCC}">100</span></div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" th:href=@{'/nha-cung-cap'}>View
+                                        Details</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar mr-1"></i>
+                                    Doanh thu mượn sách trong năm 2021
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart" width="100%" height="50"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar mr-1"></i>
+                                    Doanh thu bán sách trong năm 2021
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart_v2" width="100%" height="50"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar mr-1"></i>
+                                    Doanh thu trong ngày
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myPieChart" width="100%" height="50"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar mr-1"></i>
+                                    Nhập sách gần đây
+                                </div>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Nhà cung cấp</th>
+                                            <th scope="col">Ngày nhập</th>
+                                            <th scope="col">Số lượng sách</th>
+                                            <th scope="col">Thành tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="item : ${DanhSach}">
+                                            <th th:text="${item.id}">1</th>
+                                            <td th:text="${item.nhaCungCap.ten}">Mark</td>
+                                            <td th:text="${item.ngayNhap}">Mark</td>
+                                            <td th:text="${item.soLuong}">Mark</td>
+                                            <td th:text="${item.tongTien}">Mark</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Jquery -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        var data_v1 = [];
+        $.get("http://localhost:8088/doanh-thu-nam/muon-sach", function (data, status) {
+            $.each(data, function (index, value) {
+                var item = value.data;
+                console.log(item);
+                data_v1.push(item);
+            });
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12',],
+                    datasets: [{
+                        label: 'Doanh thu (VND)',
+                        data: data_v1,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+
+        var data_v2 = [];
+        $.get("http://localhost:8088/doanh-thu-nam/ban-sach", function (data, status) {
+            $.each(data, function (index, value) {
+                var item = value.data;
+                console.log(item);
+                data_v2.push(item);
+            });
+            var ctx_v2 = document.getElementById('myChart_v2').getContext('2d');
+            var myChart = new Chart(ctx_v2, {
+                type: 'bar',
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12',],
+                    datasets: [{
+                        label: 'Doanh thu (VND)',
+                        data: data_v2,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+        console.log(data_v1);
+
+        var data_v3 = [];
+        $.get("http://localhost:8088/doanh-thu-ngay", function (data, status) {
+            $.each(data, function (index, value) {
+                var item = value.data;
+                console.log(item);
+                data_v3.push(item);
+            });
+            var ctx_v3 = document.getElementById('myPieChart').getContext('2d');
+            var myPieChart = new Chart(ctx_v3, {
+                type: 'pie',
+                data: {
+                    labels: ["Bán sách", "Mượn sách"],
+                    datasets: [
+                        {
+                            fill: true,
+                            backgroundColor: [
+                                'Red',
+                                'Blue'
+                            ],
+                            data: data_v3,
+                            // Notice the borderColor 
+                            borderColor: [
+                                'Red',
+                                'Blue'
+                            ],
+                            borderWidth: [2, 2]
+                        }
+                    ]
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

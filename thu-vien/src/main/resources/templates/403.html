@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <!-- icon awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+            crossorigin="anonymous"></script>
+
+    <!-- style css  -->
+    <link rel="stylesheet" th:href="@{/css/style.css}"  href="../../static/css/style.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="container-fluid  d-flex justify-content-between khung">
+            <div class="title">
+                <h3>Quản lý nhà sách</h3>
+            </div>
+            <div class="dropdown user">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item"  th:href=@{'/logout'} >Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <div class="menu">
+        abc
+    </div> -->
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <!-- thanh menu  -->
+            <nav class="sidenav-dark" th:include="Layout/menu::menu"></nav>
+            <!-- end thanh menu  -->
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <h1 class="mt-4 main_title">Thông báo</h1>
+
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="card mb-12">
+                                <div class="card-header">
+                                    <b style="color: red;">Bạn không được phép vào đường link này. Hãy liên hệ với
+                                        admin</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</body>
+
+</html>

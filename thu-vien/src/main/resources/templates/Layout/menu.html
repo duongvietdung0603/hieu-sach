@@ -1,0 +1,122 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<nav class="sidenav-dark" xmlns:th="http://www.thymeleaf.org" th:fragment="menu">
+    <div class="nav">
+        <div class="sidenav-title">Dashboard</div>
+        <a class="nav-link d-flex justify-content-between align-items-center"  th:href=@{'/dashboard'}>
+            <div class="link_icon"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+            </div>
+        </a>
+
+    </div>
+
+    <div class="nav">
+        <div class="sidenav-title">Quản lý chung</div>
+
+        <!-- nhà cung cấp  -->
+        <a class="nav-link d-flex justify-content-between align-items-center" data-toggle="collapse"
+           href="#collapse_0">
+            <div class="link_icon"><i class="fas fa-people-arrows mr-2"></i>Nhà cung cấp
+            </div>
+            <i class="fas fa-angle-right"></i>
+        </a>
+        <div class="collapse" id="collapse_0">
+            <div class="card-body">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link link" th:href=@{'/nha-cung-cap'}>Danh sách</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- sách  -->
+        <a class="nav-link d-flex justify-content-between align-items-center" data-toggle="collapse"
+           href="#collapse_1">
+            <div class="link_icon"><i class="fas fa-book mr-2"></i>Sách
+            </div>
+            <i class="fas fa-angle-right"></i>
+        </a>
+        <div class="collapse" id="collapse_1">
+            <div class="card-body">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link link" th:href=@{'/sach'}>Danh sách</a>
+                    <a class="nav-link link" th:href=@{'/loai-sach'}>Loại sách</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- nhân viên  -->
+        <a class="nav-link d-flex justify-content-between align-items-center" data-toggle="collapse"
+           href="#collapse_2">
+            <div class="link_icon"><i class="fas fa-users mr-2"></i>Nhân Viên
+            </div>
+            <i class="fas fa-angle-right"></i>
+        </a>
+        <div class="collapse" id="collapse_2">
+            <div class="card-body">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link link" th:href=@{'/nhan-vien'}>Danh Sách</a>
+                    <a class="nav-link link" th:href=@{'/nhan-vien/diem-danh'}>Điểm danh</a>
+                    <a class="nav-link link" th:href=@{'/nhan-vien/danh-sach-diem-danh'}>Danh sách điểm danh</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- khách hàng  -->
+        <a class="nav-link d-flex justify-content-between align-items-center" data-toggle="collapse"
+           href="#collapse_3">
+            <div class="link_icon"><i class="fas fa-user mr-2"></i>Khách hàng
+            </div>
+            <i class="fas fa-angle-right"></i>
+        </a>
+        <div class="collapse" id="collapse_3">
+            <div class="card-body">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link link" th:href=@{'/khach-hang'}>Danh Sách</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- quản trị viên  -->
+        <a class="nav-link d-flex justify-content-between align-items-center" data-toggle="collapse"
+           href="#collapse_4">
+            <div class="link_icon"><i class="fas fa-user mr-2"></i>Quản trị viên
+            </div>
+            <i class="fas fa-angle-right"></i>
+        </a>
+        <div class="collapse" id="collapse_4">
+            <div class="card-body">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link link" th:href=@{'/user'}>Danh Sách</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav">
+        <div class="sidenav-title">Nghiệp vụ</div>
+
+        <!-- bán sách  -->
+        <a class="nav-link d-flex justify-content-between align-items-center"  th:href=@{'/ban-sach'}>
+            <div class="link_icon"><i class="fas fa-file-import mr-2"></i>Bán sách
+            </div>
+        </a>
+
+        <!-- nhập sách  -->
+        <a class="nav-link d-flex justify-content-between align-items-center"  th:href=@{'/nhap-sach'}>
+            <div class="link_icon"><i class="fas fa-file-import mr-2"></i>Nhập sách
+            </div>
+        </a>
+
+        <!-- cho mượn sách  -->
+        <a class="nav-link d-flex justify-content-between align-items-center" th:href=@{'/muon-sach'}>
+            <div class="link_icon"><i class="fas fa-book mr-2"></i>Mượn trả sách
+            </div>
+        </a>
+
+        <!-- trả sách  -->
+        <a class="nav-link d-flex justify-content-between align-items-center" th:href=@{'/lich-su-tra-sach'}>
+            <div class="link_icon"><i class="fas fa-book mr-2"></i>Lịch sử trả sách
+            </div>
+        </a>
+    </div>
+</nav>

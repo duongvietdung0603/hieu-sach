@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <!-- icon awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+            crossorigin="anonymous"></script>
+
+    <!-- style css  -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css">
+
+</head>
+
+<body>
+<div class="header">
+    <div class="container-fluid  d-flex justify-content-between khung">
+        <div class="title">
+            <h3>Quản lý nhà sách</h3>
+        </div>
+        <div class="dropdown user">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" th:href=@{'/logout'}>Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<div class="menu">
+    abc
+</div> -->
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <!-- thanh menu  -->
+        <nav class="sidenav-dark" th:include="Layout/menu::menu"></nav>
+        <!-- end thanh menu  -->
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home mr-1"></i>
+                                    Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Thống kê bán sách</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                Doanh thu năm
+                            </div>
+                            <div class="card-body">
+                                <div class="form-inline mb-4">
+                                    <div class="form-group mb-2">
+                                        <label>Nhập năm:</label>
+                                    </div>
+                                    <div class="form-group mx-sm-3 mb-2">
+                                        <input type="number" class="form-control" id="nam" value="2021">
+                                    </div>
+                                    <button type="button" class="btn btn-primary  mb-2" id="clickNam">Tìm kiếm</button>
+                                </div>
+
+                                <h4>Tổng doanh thu: <span class="ml-4" id="tong_danh_thu_nam"></span></h4>
+
+                                <canvas id="myChart" width="100%" height="30"></canvas>
+
+                                <table class="table table-striped mt-4">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Tên sách</th>
+                                        <th>Tác giả</th>
+                                        <th>Số lượng</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table_nam">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                Doanh thu theo ngày
+                            </div>
+                            <div class="card-body">
+                                <div class="form-inline mb-4">
+                                    <div class="form-group mb-2">
+                                        <label>Nhập ngày:</label>
+                                    </div>
+                                    <div class="form-group mx-sm-3 mb-2">
+                                        <input type="date" class="form-control" id="ngay" value="2021">
+                                    </div>
+                                    <button type="button" class="btn btn-primary  mb-2" id="clickNgay">Tìm kiếm</button>
+                                </div>
+
+                                <h4>Tổng doanh thu: <span class="ml-4" id="tong_danh_thu_ngay"></span></h4>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Tên sách</th>
+                                        <th>Tác giả</th>
+                                        <th>Số lượng</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table_ngay">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                Doanh thu theo tháng trong năm 2021
+                            </div>
+                            <div class="card-body">
+                                <div class="form-inline mb-4">
+                                    <div class="form-group mb-2">
+                                        <label>Nhập tháng:</label>
+                                    </div>
+                                    <div class="form-group mx-sm-3 mb-2">
+                                        <input type="number" class="form-control" id="thang" value="1">
+                                    </div>
+                                    <button type="button" class="btn btn-primary  mb-2" id="clickThang">Tìm kiếm</button>
+                                </div>
+
+                                <h4>Tổng doanh thu: <span class="ml-4" id="tong_danh_thu_thang"></span></h4>
+
+                                <table class="table table-striped" id="records_table">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Tên sách</th>
+                                        <th>Tác giả</th>
+                                        <th>Số lượng</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table_thang">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </main>
+    </div>
+</div>
+
+<!-- Jquery -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+var nam = 2021;
+
+$('#clickNam').click(function() {
+    var nam = $('#nam').val();
+    var data_v1 = [];
+
+    $.get("http://localhost/Phuoc_ban_sach_v2/api/doanh_thu_thang.php?nam=" + nam, function(data, status) {
+        $.each(JSON.parse(data), function(index, value) {
+            var item = value.data;
+            console.log(item);
+
+            data_v1.push(item);
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5',
+                        'Tháng 6',
+                        'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11',
+                        'Tháng 12',
+                    ],
+                    datasets: [{
+                        label: 'Doanh thu (VND)',
+                        data: data_v1,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1,
+                        hoverBorderWidth: 0
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    });
+
+    $.get("http://localhost/Phuoc_ban_sach_v2/api/doanh_thu_nam.php?nam=" + nam, function(data, status) {
+        console.log("Tong ", data);
+        $('#tong_danh_thu_nam').html(data);
+    });
+
+    var html = '';
+    $('#table_nam').html(html);
+
+    $.get("http://localhost/Phuoc_ban_sach_v2/api/sach_theo_nam.php?nam=" + nam, function(data, status) {
+        $.each(JSON.parse(data), function(i, item) {
+            html += "<tr>" +
+                "<td>" + item.id +
+                "</td><td>" + item.ten +
+                "</td><td>" + item.tac_gia +
+                "</td><td>" + item.so_luong +
+                "</tr>";
+            $('#table_nam').html(html);
+        });
+    });
+});
+
+$('#clickNgay').click(function() {
+    var ngay = $('#ngay').val();
+    $.get("http://localhost/Phuoc_ban_sach_v2/api/doanh_thu_ngay.php?ngay=" + ngay, function(data, status) {
+        console.log("Tong ", data);
+        $('#tong_danh_thu_ngay').html(data);
+    });
+
+    var html = '';
+    $('#table_ngay').html(html);
+
+    $.get("http://localhost/Phuoc_ban_sach_v2/api/sach_theo_ngay.php?ngay=" + ngay, function(data, status) {
+        $.each(JSON.parse(data), function(i, item) {
+            html += "<tr>" +
+                "<td>" + item.id +
+                "</td><td>" + item.ten +
+                "</td><td>" + item.tac_gia +
+                "</td><td>" + item.so_luong +
+                "</tr>";
+            $('#table_ngay').html(html);
+        });
+    });
+});
+
+$('#clickThang').click(function() {
+    var thang = $('#thang').val();
+    $.get("http://localhost/Phuoc_ban_sach_v2/api/doanh_thu_thang_v2.php?thang=" + thang, function(data,
+        status) {
+        console.log("Tong ", data);
+        $('#tong_danh_thu_thang').html(data);
+    });
+
+    var html = '';
+    $('#table_thang').html(html);
+
+    $.get("http://localhost/Phuoc_ban_sach_v2/api/sach_theo_thang.php?thang=" + thang, function(data, status) {
+        $.each(JSON.parse(data), function(i, item) {
+            html += "<tr>" +
+                "<td>" + item.id +
+                "</td><td>" + item.ten +
+                "</td><td>" + item.tac_gia +
+                "</td><td>" + item.so_luong +
+                "</tr>";
+            $('#table_thang').html(html);
+        });
+    });
+});
+</script>
+</body>
+
+</html>
